@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify
-from app import bike_selection  # Import the function
+from flask import Flask
+from app import bike_selection  # Import function (not the app)
 
-app = Flask(__name__)  # Define the Flask app
+app = Flask(__name__)
 
-# Define the existing routes
 @app.route("/")
 def home():
     return "ESP Lock Server is Running!"
@@ -16,10 +15,9 @@ def unlock():
 def lock():
     return "Locking the Bike!", 200
 
-# Include the bike selection route
 @app.route("/bike_selection", methods=["POST"])
 def bike_selection_route():
-    return bike_selection()
+    return bike_selection()  # Call function
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
