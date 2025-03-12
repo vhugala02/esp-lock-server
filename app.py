@@ -1,4 +1,13 @@
-from main import app
+from flask import request, jsonify
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+def bike_selection():
+    try:
+        data = request.get_json()
+        bike = data.get("bike")  # Extract selected bike
+        if bike:
+            print(f"Received bike selection: {bike}")
+            return jsonify({"status": "success", "message": f"Bike {bike} selected"}), 200
+        else:
+            return jsonify({"status": "error", "message": "No bike selected"}), 400
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
