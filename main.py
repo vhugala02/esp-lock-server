@@ -1,5 +1,5 @@
 from flask import Flask
-from app import bike_selection  # Import function (not the app)
+from app import bike_selection  # Import function
 
 app = Flask(__name__)
 
