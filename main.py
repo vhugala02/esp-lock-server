@@ -1,4 +1,3 @@
-# main.py
 from flask import Flask
 from app import bike_selection, test_bike_selection
 
@@ -12,7 +11,7 @@ def home():
 def bike_selection_route():
     return bike_selection()
 
-@app.route("/test_bike", methods=["GET"])
+@app.route("/test_bike", methods=["GET"])  # ✅ This enables your manual test
 def test_bike_selection_route():
     return test_bike_selection()
 
