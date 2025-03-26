@@ -1,22 +1,16 @@
-from flask import request, jsonify
+from flask import Flask
+from app import bike_selection, test_bike_selection
 
-# Global variable to simulate a bike selection
-test_bike_value = {"bike": "Vtuvia SN100"}
+app = Flask(__name__)
 
-def bike_selection():
-    try:
-        data = request.get_json()
-        bike = data.get("bike")
-        print(f"Raw incoming data: {data}")
-        print(f"Extracted bike selection: {bike}")
-        if bike:
-            return jsonify({"status": "success", "message": f"Bike {bike} selected"}), 200
-        else:
-            return jsonify({"status": "error", "message": "No bike selected"}), 400
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+@app.route("/")
+def home():
+    return "ESP Lock Server is Running!"
 
-def test_bike_selection():
-    # Hardcoded test value returned as if it came from form
-    return jsonify({"status": "success", "message": f"Bike {test_bike_value['bike']} selected"})
+@app.route("/bike_selection", methods=["POST"])
+def bike_selection_route():
+    return bike_selection()
 
+@app.route("/test_bike", methods=["GET"])
+def test_bike_selection_route():
+    return test_bike_selection()
