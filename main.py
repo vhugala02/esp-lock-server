@@ -11,7 +11,7 @@ def home():
 def bike_selection_route():
     return bike_selection()
 
-@app.route("/test_bike", methods=["GET"])  # ✅ This enables your manual test
+@app.route("/test_bike", methods=["GET"])
 def test_bike_selection_route():
     return test_bike_selection()
 
